@@ -44,7 +44,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         // Create a new `SignInRequest`.
         let request: Request<SignInRequest> = Request::new(SignInRequest { 
             username: username.clone(), 
-            password: username.clone() 
+            password: password.clone() 
         }); 
 
         // Make a sign in request. Propagate any errors. Convert Response<SignInResponse> into SignInResponse.
