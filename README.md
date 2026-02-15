@@ -54,7 +54,7 @@ A small Rust microservice demo using gRPC (tonic) that includes an auth service,
 
 ## Demo
 
-
+### Auth & Health Check Services
 ```bash
 # Terminal 1: Start the auth service
 cargo watch -c -q -w src/auth-service -x "run -q --bin auth-service"
@@ -64,3 +64,19 @@ cargo watch -c -q -w src/health-check-service -x "run -q --bin health-check"
 ```
 
 ![alt text](demo_image.png)
+
+### Interacting with the Client
+```bash
+# Terminal 3: Use the CLI client to sign up, sign in, and sign out
+cargo run --bin client -- sign-up --username alice --password secret
+>>
+SignUpResponse { status_code: Success }
+
+cargo run --bin client -- sign-in --username alice --password secret
+>>
+SignInResponse { status_code: Success, user_uuid: "2efb8699-1bd8-427b-8d98-8e097445e3db", session_token: "11b35c08-a1b8-48fc-ab96-85fd1c899385" }
+
+cargo run --bin client -- sign-out --session-token 11b35c08-a1b8-48fc-ab96-85fd1c899385
+>>
+SignOutResponse { status_code: Success }
+```
